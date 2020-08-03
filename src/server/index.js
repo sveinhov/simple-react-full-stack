@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable global-require */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
@@ -43,7 +44,7 @@ socket.on('connect', function () {
   client.readHoldingRegisters(1004, 10)
     .then(function (resp) {        
         const SBP1 = regs2float(resp.response._body.valuesAsArray.slice(0,2));
-        let arr = resp.response._body.valuesAsArray.slice(2,4);
+        const arr = resp.response._body.valuesAsArray.slice(2,4);
         const SBP2 = regs2float(arr);
         // write2influx(SBP1);
         console.log(SBP1);
@@ -51,6 +52,7 @@ socket.on('connect', function () {
         // console.log(resp.response._body.valuesAsArray)
         socket.end();
     }).catch(function () {
+      // eslint-disable-next-line prefer-rest-params
       console.error(require('util').inspect(arguments, {
         depth: null
       }))
